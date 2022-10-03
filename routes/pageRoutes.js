@@ -3,6 +3,7 @@ const path = require('path');
 const {showHomePage, showShopPage, showSingleBlogPage, shopSinglePage, showAdminPage } = require('../controllers/pageControllers'); 
 const {productDataStore, showproductCreatePage, showproductPage, viewSingleproductAdmin, deleteSingleproduct, editSingleproduct, updateSingleproduct} = require('../controllers/productController')
 const multer = require('multer');
+const { sliderPage } = require('../controllers/sliderController');
 
 // init router
 const router = express.Router();
@@ -28,6 +29,9 @@ router.get('/shop', showShopPage);
 router.get('/admin', showAdminPage);
 router.get('/admin/product', showproductPage);
 router.get('/admin/product/createproduct', showproductCreatePage);
+
+
+router.get('/admin/slider', sliderPage);
 
 
 router.get('/admin/product/:id', viewSingleproductAdmin);

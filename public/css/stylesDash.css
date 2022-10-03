@@ -11743,3 +11743,10 @@ input[type="file"] {
 li {
   list-style: none;
 }
+
+.sliderphotostyle label img {
+  height: 70px;
+  width: 70px;
+  cursor: pointer;
+}
+
