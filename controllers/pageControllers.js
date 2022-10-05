@@ -4,7 +4,7 @@ const {readFileSync, read, writeFileSync, rename} = require('fs');
 // home page controller
 const showHomePage = (req, res) => {
 
-    const slider = readFileSync(path.join(__dirname, '../db/homeSlider.json'));
+    const slider = readFileSync(path.join(__dirname, '../db/mainSlider.json'));
     const clients = readFileSync(path.join(__dirname, '../db/homeClients.json'));
     const blogs = readFileSync(path.join(__dirname, '../db/homeBlogs.json'));
     
