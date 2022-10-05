@@ -3,7 +3,7 @@ const path = require('path');
 const {showHomePage, showShopPage, showSingleBlogPage, shopSinglePage, showAdminPage } = require('../controllers/pageControllers'); 
 const {productDataStore, showproductCreatePage, showproductPage, viewSingleproductAdmin, deleteSingleproduct, editSingleproduct, updateSingleproduct} = require('../controllers/productController')
 const multer = require('multer');
-const { sliderPage, createslider, sliderDataStore } = require('../controllers/sliderController');
+const { sliderPage, createslider, sliderDataStore, deleteSlider, editSlider, updateSlider } = require('../controllers/sliderController');
 
 // init router
 const router = express.Router();
@@ -20,7 +20,7 @@ const storage = multer.diskStorage({
 
 const productPhotoMulter = multer({
     storage : storage
-}).single('products-Photos');
+}).single('pphoto');
 
 
 
@@ -36,7 +36,7 @@ const sliderStorage = multer.diskStorage({
 
 const sliderPhotoMulter = multer({
     storage : sliderStorage
-}).single('sliders-Photos')
+}).single('sphoto')
 
 
 // routes
@@ -48,16 +48,23 @@ router.get('/admin/product', showproductPage);
 router.get('/admin/product/createproduct', showproductCreatePage);
 
 
-router.post('/admin/createslider', sliderPhotoMulter, sliderDataStore);
-router.get('/admin/slider', sliderPage);
-router.get('/admin/createslider', createslider);
 
 
 router.get('/admin/product/:id', viewSingleproductAdmin);
 router.get('/admin/product/edit/:id', editSingleproduct);
 router.post('/admin/product/update/:id', productPhotoMulter, updateSingleproduct);
-
 router.get('/admin/product/delete/:id', deleteSingleproduct);
+
+
+
+router.post('/admin/slider/update/:id', sliderPhotoMulter, updateSlider);
+router.post('/admin/createslider', sliderPhotoMulter, sliderDataStore);
+router.get('/admin/slider', sliderPage);
+router.get('/admin/createslider', createslider);
+router.get('/admin/slider/delete/:id', deleteSlider);
+router.get('/admin/slider/edit/:id', editSlider);
+
+
 router.get('/blog/:id', showSingleBlogPage);
 router.get('/view/:id', shopSinglePage);
 

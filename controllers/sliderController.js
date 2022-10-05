@@ -13,8 +13,6 @@ const sliderPage = (req, res) => {
         sliders
     });
 
-    console.log(sliders);
-
 }
 
 // create slider page controlers
@@ -45,7 +43,7 @@ const sliderDataStore = (req, res) => {
         id : last_id,
         title : title,
         desc : desc,
-        photo : req.file.filename
+        photo : req.file ? req.file.filename : "sliderDemo.png"
     })
 
     // updata all data into json db
@@ -58,8 +56,69 @@ const sliderDataStore = (req, res) => {
 
 
 
+ // delete slider controllers
+ const deleteSlider = (req, res) => {
+
+    // all data from slider collection
+    const sliders = JSON.parse(readFileSync(path.join(__dirname, '../db/mainSlider.json')));
+
+    // get single data with id to delete
+    const { id } = req.params;
+
+    // match slider by id
+    const new_slider = sliders.filter(data => data.id != id);
+
+    // update new data
+    writeFileSync(path.join(__dirname, '../db/mainSlider.json'), JSON.stringify(new_slider));
+
+    res.redirect('back')
+
+ }
 
 
+ // update slider details
+ const editSlider = ( req, res ) => {
+
+    // all data from slider collection
+    const sliders = JSON.parse(readFileSync(path.join(__dirname, '../db/mainSlider.json')));
+
+    // get single data with id to delete
+    const { id } = req.params;
+
+    const edit_slider = sliders.find(data => data.id == id);
+
+    res.render('slider/editSlider', {
+        sliders : edit_slider
+    })
+ }
+
+
+ // update sliders data
+ const updateSlider= (req, res) => {
+
+    // all data from slider collection
+    const sliders = JSON.parse(readFileSync(path.join(__dirname, '../db/mainSlider.json')));
+
+    // get id
+    const { id } = req.params;
+    const { sphoto } = req.body;
+
+    // find index number
+    sliders[sliders.findIndex(data => data.id == id)] = {
+    ...sliders[sliders.findIndex(data => data.id == id)],
+    title : req.body.title,
+    desc : req.body.desc,
+    photo : req.file.filename
+
+    }
+console.log(sphoto)
+
+    // write data to json db
+    writeFileSync(path.join(__dirname, '../db/mainSlider.json'), JSON.stringify(sliders));
+
+    res.redirect('/admin/slider');
+
+ }
 
 
 
@@ -70,5 +129,8 @@ const sliderDataStore = (req, res) => {
 module.exports = {
     sliderPage,
     createslider,
-    sliderDataStore
+    sliderDataStore,
+    deleteSlider,
+    editSlider,
+    updateSlider
 }

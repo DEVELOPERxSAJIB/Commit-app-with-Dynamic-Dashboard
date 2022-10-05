@@ -101,8 +101,6 @@ const editSingleproduct = (req, res) => {
 // update single product
 const updateSingleproduct = (req, res) => {
 
-    console.log(req.body);
-
     // get id
     const { id } = req.params;
 
@@ -115,7 +113,8 @@ const updateSingleproduct = (req, res) => {
         name : req.body.name,
         price : req.body.price,
         size : req.body.size,
-        color : req.body.color
+        color : req.body.color,
+        photo : req.file.filename
      }
 
      // write data to json db

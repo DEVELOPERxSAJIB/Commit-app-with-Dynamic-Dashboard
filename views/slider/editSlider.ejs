@@ -101,69 +101,49 @@
         </nav>
     </div>
     <div id="layoutSidenav_content">
+
         <main>
             <div class="container-fluid px-4">
-                <h1 class="mt-4">Product Dashboard</h1>
+                <h1 class="mt-4">Slider Dashboard/Edit Slider</h1>
                 <ol class="breadcrumb mb-4">
-                    <li href="#" class="breadcrumb-item active">Dashboard/Product/edit-product</li>
+                    <li class="breadcrumb-item active">Dashboard/slider</li>
                 </ol>
-                
-                <div class="row justify-content-center little-font">
-                    <div class=" col-md-4">
-                        <a href="/admin/product/" class="btn btn-success btn-sm mb-4 text-right">Step Back</a>
-                        <div class="card mb-4">
-                            <div class="card-header">
-                                <h3 class="text-center bold-text">Update <%= products.name %>  Data</h3>
-                            </div>
+
+                <div class="first-coloum">
+                    <div class="row justify-content-center">
+
+                        <div class="card bg-light col-md-4">
+                            <h2 class="text-center mt-3">Update Slider Data</h2>
                             <div class="card-body">
-                                <form action="/admin/product/update/<%= products.id %>" method="post" enctype="multipart/form-data">
+                                <form action="/admin/slider/update/<%= sliders.id %>" method="POST" enctype="multipart/form-data">
                                     <div class="my-3">
-                                        <label for="">Name</label>
-                                        <input value="<%= products.name %>" name="name" type="text" class="form-control">
+                                        <label for="">Title</label>
+                                        <input value="<%= sliders.title %>" name="title" type="text" class="form-control" name="title">
                                     </div>
                                     <div class="my-3">
-                                        <label for="">Price</label>
-                                        <input value="<%= products.price %>" name="price" type="text" class="form-control">
-                                    </div>
-                                    <div class="my-3">
-                                        <label for="">Size</label>
-                                        <input value="<%= products.size %>" name="size" type="text" class="form-control">
-                                    </div>
-                                    <div class="my-3">
-                                        <label for="">Color</label>
-                                        <select name="color" id="" class="form-control">                                    
-                                                                                        
-                                            <option value="">-select-</option>
-                                            <option <% if ( products.color == 'Red') { %> selected <% } %> value="Red">Red</option>
-                                            <option <% if ( products.color == 'Green') { %> selected <% } %> value="Green">Green</option>
-                                            <option <% if ( products.color == 'Blue') { %> selected <% } %> value="Blue">Blue</option>
-                                            <option <% if ( products.color == 'White') { %> selected <% } %> value="White">White</option>
-                                            <option <% if ( products.color == 'Silver') { %> selected <% } %> value="Silver">Silver</option>
-                                            <option <% if ( products.color == 'Orange') { %> selected <% } %> value="Orange">Orange</option>
-                                            <option <% if ( products.color == 'Black') { %> selected <% } %> value="Black">Black</option>
-                                            <option <% if ( products.color == 'Purple') { %> selected <% } %> value="Purple">Purple</option>
-                                            
-                                        </select>
+                                        <label for="floatingTextarea">Descreption</label>
+                                        <input value="<%= sliders.desc %>" name="desc" class="form-control h-50" id="floatingTextarea"></input>
                                     </div>
                                     <div class="my-3">
                                         <label for="">Photo</label>
                                         <br>
-                                        <img name="photo" class="preload-product mb-3" src="/images/products/<%= products.photo %>" alt="">
+                                        <img name="photo" class="preload-product mb-3" src="/images/sliders/<%= sliders.photo %>" alt="">
                                         <br>
-                                        <label class="product-photo" for="product-photo"><img src="https://pngimage.net/wp-content/uploads/2018/06/upgrade-logo-png-2.png" alt=""></label>
-                                        <input name="pphoto" type="file" id="product-photo">
+                                        <label class="product-photo" for="product-photo"><img src="https://cdn.pixabay.com/photo/2017/02/07/02/16/cloud-2044823__340.png" alt=""></label>
+                                        <input name="sphoto" type="file" id="product-photo">
                                     </div>
                                     <div class="my-3">
-                                        <input type="submit" class="form-control btn-sm btn btn-success" value="Update Now">
+                                        <input type="submit" class="form-control btn-sm btn btn-primary" value="Create Now">
                                     </div>
                                 </form>
                             </div>
                         </div>
+                                       
                     </div>
                 </div>
-            
             </div>
         </main>
+
         <footer class="py-4 bg-light mt-auto">
             <div class="container-fluid px-4">
                 <div class="d-flex align-items-center justify-content-between small">
